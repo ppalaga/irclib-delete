@@ -1,7 +1,7 @@
 /*
  * IRClib -- A Java Internet Relay Chat library -- class IRCConnection
  * Copyright (C) 2002 - 2006 Christoph Schwering <schwering@gmail.com>
- * 
+ *
  * This library and the accompanying materials are made available under the
  * terms of the
  * 	- GNU Lesser General Public License,
@@ -27,6 +27,7 @@ import org.schwering.irc.lib.IRCConnection;
 import org.schwering.irc.lib.IRCConstants;
 import org.schwering.irc.lib.IRCEventListener;
 import org.schwering.irc.lib.IRCUser;
+import org.schwering.irc.lib.TrafficLogger;
 import org.schwering.irc.lib.ssl.SSLIRCConnection;
 import org.schwering.irc.manager.event.BanlistEvent;
 import org.schwering.irc.manager.event.ChannelModeEvent;
@@ -105,15 +106,16 @@ public class Connection {
      * Initializes a new connection. This means that the internal <code>IRCConnection</code> is initialized with the
      * connection data specified as constructor arguments and some other specific values. Further configuration can be done
      * via the <code>Connection</code> class's methods.
+     * @param sniffer
      */
     public Connection(String host, int portMin, int portMax, boolean ssl,
-        String pass, String nick, String username, String realname) {
+        String pass, String nick, String username, String realname, TrafficLogger trafficLogger) {
         if (ssl) {
             conn = new SSLIRCConnection(host, portMin, portMax, pass, nick,
-                username, realname);
+                username, realname, trafficLogger);
         } else {
             conn = new IRCConnection(host, portMin, portMax, pass, nick,
-                username, realname);
+                username, realname, trafficLogger);
         }
         conn.setPong(true);
         conn.setColors(true);
@@ -124,15 +126,16 @@ public class Connection {
      * Initializes a new connection. This means that the internal <code>IRCConnection</code> is initalized with the
      * connection data specified as constructor arguments and some other specific values. Further configuration can be done
      * via the <code>Connection</code> class's methods.
+     * @param sniffer
      */
     public Connection(String host, int[] ports, boolean ssl,
-        String pass, String nick, String username, String realname) {
+        String pass, String nick, String username, String realname, TrafficLogger trafficLogger) {
         if (ssl) {
             conn = new SSLIRCConnection(host, ports, pass, nick, username,
-                realname);
+                realname, trafficLogger);
         } else {
             conn = new IRCConnection(host, ports, pass, nick, username,
-                realname);
+                realname, trafficLogger);
         }
         conn.setPong(true);
         conn.setColors(true);
@@ -589,11 +592,11 @@ public class Connection {
     public void partChannel(String channel) {
         conn.doPart(channel);
     }
-    
+
     public void joinChannel(String channel) {
         conn.doJoin(channel);
     }
-    
+
     public void joinChannel(String channel, String key) {
         conn.doJoin(channel, key);
     }

@@ -40,7 +40,7 @@ public class ActionsTest {
 
     private Connection connect(String nick, String userName, String realName) {
         return new Connection("irc.freenode.net", new int[]{6667},
-            false, null, nick, userName, realName);
+            false, null, nick, userName, realName, null);
     }
 
     private void sendOtherAction() throws IOException {
