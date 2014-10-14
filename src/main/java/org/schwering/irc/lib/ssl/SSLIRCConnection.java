@@ -143,8 +143,8 @@ public class SSLIRCConnection extends IRCConnection {
 	 * @see #connect()
 	 */
 	public SSLIRCConnection(String host, int[] ports, String pass, String nick,
-			String username, String realname, TrafficLogger trafficLogger) {
-		super(host, ports, pass, nick, username, realname, trafficLogger);
+			String username, String realname, String socksProxyHost, Integer socksProxyPort, TrafficLogger trafficLogger) {
+		super(host, ports, pass, nick, username, realname, socksProxyHost, socksProxyPort, trafficLogger);
 	}
 
 // ------------------------------
@@ -182,8 +182,8 @@ public class SSLIRCConnection extends IRCConnection {
 	 * @see #connect()
 	 */
 	public SSLIRCConnection(String host, int portMin, int portMax, String pass,
-			String nick, String username, String realname, TrafficLogger trafficLogger) {
-		super(host, portMin, portMax, pass, nick, username, realname, trafficLogger);
+			String nick, String username, String realname, String socksProxyHost, Integer socksProxyPort, TrafficLogger trafficLogger) {
+		super(host, portMin, portMax, pass, nick, username, realname, socksProxyHost, socksProxyPort, trafficLogger);
 	}
 
 // ------------------------------

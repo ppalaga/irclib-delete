@@ -13,14 +13,9 @@
 
 package org.schwering.irc.lib;
 
-import com.sun.net.ssl.SSLContext;
-import com.sun.net.ssl.TrustManager;
-import com.sun.net.ssl.internal.ssl.Provider;
-
 import java.io.IOException;
-import java.io.PrintStream;
-import java.io.StringWriter;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.SocketException;
 import java.security.Security;
 import java.util.Vector;
@@ -28,6 +23,10 @@ import java.util.Vector;
 import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
+
+import com.sun.net.ssl.SSLContext;
+import com.sun.net.ssl.TrustManager;
+import com.sun.net.ssl.internal.ssl.Provider;
 
 /**
  * The SSL extension of the <code>IRCConnection</code> class.
@@ -149,8 +148,8 @@ public class SSLIRCConnection extends IRCConnection {
 	 * @see #connect()
 	 */
 	public SSLIRCConnection(String host, int[] ports, String pass, String nick,
-			String username, String realname, TrafficLogger trafficLogger) {
-		super(host, ports, pass, nick, username, realname, trafficLogger);
+			String username, String realname, String socksProxyHost, Integer socksProxyPort, TrafficLogger trafficLogger) {
+		super(host, ports, pass, nick, username, realname, socksProxyHost, socksProxyPort, trafficLogger);
 	}
 
 // ------------------------------
@@ -188,8 +187,8 @@ public class SSLIRCConnection extends IRCConnection {
 	 * @see #connect()
 	 */
 	public SSLIRCConnection(String host, int portMin, int portMax, String pass,
-			String nick, String username, String realname, TrafficLogger trafficLogger) {
-		super(host, portMin, portMax, pass, nick, username, realname, trafficLogger);
+			String nick, String username, String realname, String socksProxyHost, Integer socksProxyPort, TrafficLogger trafficLogger) {
+		super(host, portMin, portMax, pass, nick, username, realname, socksProxyHost, socksProxyPort, trafficLogger);
 	}
 
 // ------------------------------

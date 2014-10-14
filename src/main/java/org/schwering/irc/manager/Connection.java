@@ -109,13 +109,13 @@ public class Connection {
      * @param sniffer
      */
     public Connection(String host, int portMin, int portMax, boolean ssl,
-        String pass, String nick, String username, String realname, TrafficLogger trafficLogger) {
+        String pass, String nick, String username, String realname, String socksProxyHost, Integer socksProxyPort, TrafficLogger trafficLogger) {
         if (ssl) {
             conn = new SSLIRCConnection(host, portMin, portMax, pass, nick,
-                username, realname, trafficLogger);
+                username, realname, socksProxyHost, socksProxyPort, trafficLogger);
         } else {
             conn = new IRCConnection(host, portMin, portMax, pass, nick,
-                username, realname, trafficLogger);
+                username, realname, socksProxyHost, socksProxyPort, trafficLogger);
         }
         conn.setPong(true);
         conn.setColors(true);
@@ -129,13 +129,13 @@ public class Connection {
      * @param sniffer
      */
     public Connection(String host, int[] ports, boolean ssl,
-        String pass, String nick, String username, String realname, TrafficLogger trafficLogger) {
+        String pass, String nick, String username, String realname, String socksProxyHost, Integer socksProxyPort, TrafficLogger trafficLogger) {
         if (ssl) {
             conn = new SSLIRCConnection(host, ports, pass, nick, username,
-                realname, trafficLogger);
+                realname, socksProxyHost, socksProxyPort, trafficLogger);
         } else {
             conn = new IRCConnection(host, ports, pass, nick, username,
-                realname, trafficLogger);
+                realname, socksProxyHost, socksProxyPort, trafficLogger);
         }
         conn.setPong(true);
         conn.setColors(true);
