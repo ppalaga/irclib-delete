@@ -33,7 +33,9 @@ public enum CTCPCommand {
 	TIME;
 
 	private static final Map<String, CTCPCommand> FAST_LOOKUP;
-	public static int SHORTEST_COMMAND_LENGTH;
+	public static final int SHORTEST_COMMAND_LENGTH;
+	public static final char QUOTE_CHAR = '\u0001';
+	public static final String ME = "ME";
 	static {
 		int shortestLength = Integer.MAX_VALUE;
 		Map<String, CTCPCommand> fastLookUp = new HashMap<String, CTCPCommand>(64);
@@ -46,6 +48,7 @@ public enum CTCPCommand {
 			}
 			fastLookUp.put(name, value);
 		}
+		fastLookUp.put(ME, ACTION);
 		FAST_LOOKUP = Collections.unmodifiableMap(fastLookUp);
 		SHORTEST_COMMAND_LENGTH = shortestLength;
 	}
