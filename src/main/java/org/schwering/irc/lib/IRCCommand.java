@@ -80,6 +80,8 @@ public enum IRCCommand {
 	 * <p>
 	 */
 	CNOTICE,
+	/** {@code CTCP <target> <command> <arguments>} */
+	CTCP,
 	/**
 	 * Syntax:
 	 *
